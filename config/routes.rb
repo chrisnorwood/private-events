@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   get  '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
-  get  'users/show'
+  get  '/users',  to: 'users#show'
 end
