@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'users#new'
+  root   'static_pages#home'
 
   get    '/users',  to: 'users#show'
 

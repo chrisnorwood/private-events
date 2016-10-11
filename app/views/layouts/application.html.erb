@@ -11,10 +11,14 @@
   <body>
     <header>
       <h1><%= link_to "Private Events", root_url %></h1>
+      <% if logged_in? %>
+        <h3>Welcome, <em><%= current_user.name %>.</em></h3>
+      <% end %>
       <ul>
         <% if logged_in? %>
           <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
+          <li><%= link_to "Sign up", signup_path %></li>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
