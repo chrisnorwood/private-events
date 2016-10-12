@@ -18,22 +18,32 @@
   <% end %>
 </table>
 
-<h3><%= @user.name %>'s Attending:</h3>
+<% if @user.events.any? %>
+<h3>Previously Attended Events:</h3>
 <table>
   <tr>
     <th>Title</th>
     <th>Time</th>
   </tr>
-  <% if @user.events.any?
-      @user.events.each do |event| %>
-        <tr>
-          <td><%= link_to event.title, event_url(event)%></td>
-          <td><%= event.time %></td>
-        </tr>
-  <%  end
-    else %>
+  <% @user.events.past.each do |event| %>
     <tr>
-      <td>No attending events found!</td>
+      <td><%= link_to event.title, event_url(event)%></td>
+      <td><%= event.time %></td>
     </tr>
-  <% end %>
+  <%  end %>
 </table>
+
+<h3>Upcoming Events:</h3>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Time</th>
+  </tr>
+  <% @user.events.upcoming.each do |event| %>
+    <tr>
+      <td><%= link_to event.title, event_url(event)%></td>
+      <td><%= event.time %></td>
+    </tr>
+  <%  end %>
+</table>
+<% end %>

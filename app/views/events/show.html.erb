@@ -16,3 +16,21 @@
 <% else %>
   <span>No attendees!</span>
 <% end %>
+
+
+<% if logged_in? && (current_user != @event.creator) %>
+  <h4>Would you like to attend?</h4>
+  <% if @event.time < Time.now %>
+    <p>(This event is over.)</p>
+  <% elsif @event.attendees.include?(current_user) %>
+    <%= form_for(current_user.attendances.find_by(event_id: @event.id), 
+                                          method: :delete) do |f| %>
+      <%= f.submit "Leave event" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.attendances.build(event_id: @event.id)) do |f| %>
+      <%= f.hidden_field :event_id, value: @event.id %>
+      <%= f.submit "Attend event" %>
+    <% end %>
+  <% end %>
+<% end %>
