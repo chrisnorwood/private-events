@@ -1,2 +1,20 @@
-<h1>Events#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+<% provide(:title, "New event") %>
+<p>
+  <%= form_for(@event) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+
+    <%= f.label :time %>
+    <%= f.datetime_local_field :time %>
+
+    <%= f.submit "Create new event" %>
+  <% end %>
+</p>

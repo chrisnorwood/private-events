@@ -1,2 +1,17 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<h3>All Events</h3>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Location</th>
+    <th>Time</th>
+    <th>Creator</th>
+  </tr>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= link_to event.title, event_url(event) %></td>
+      <td><%= event.location %></td>
+      <td><%= event.time %></td>
+      <td><%= link_to event.creator.name, user_url(event.creator) %></td>
+    </tr>
+  <%  end %>
+</table>
