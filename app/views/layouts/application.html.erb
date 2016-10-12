@@ -12,7 +12,7 @@
     <header>
       <h1><%= link_to "Private Events", root_url %></h1>
       <% if logged_in? %>
-        <h3>Welcome, <em><%= link_to current_user.name, user_url(current_user) %>.</em></h3>
+        <span>Welcome, <em><%= link_to current_user.name, user_url(current_user) %>.</em></span>
       <% end %>
       <ul>
         <li><%= link_to "View all events", events_path %></li>

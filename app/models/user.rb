@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   # Associations
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
+  has_many :attendances
+  has_many :events, through: :attendances
 
   # Validations
   validates :name,  presence: true, length: { maximum: 50 }

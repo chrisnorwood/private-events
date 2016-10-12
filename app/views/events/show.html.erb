@@ -1,4 +1,18 @@
-<h4><%= @event.title %></h4>
-<h5>Created by: <%= link_to @event.creator.name, user_url(@event.creator) %></h5>
-<h5><%= @event.location %> at <%= @event.time %></h5>
+<h3><%= @event.title %></h3>
 <p><%= @event.description %></p>
+<span>
+  <em>
+    By? <%= link_to @event.creator.name, user_url(@event.creator) %>
+    Where? <strong><%= @event.location %></strong> 
+    When? <strong><%= @event.time %></strong>
+  </em>
+</span>
+
+<h4>Attendees:</h4>
+<% if @event.attendees.any? %>
+  <% @event.attendees.each do |attendee| %>
+    <p><%= link_to attendee.name, user_url(attendee) %></p>
+  <% end %>
+<% else %>
+  <span>No attendees!</span>
+<% end %>
